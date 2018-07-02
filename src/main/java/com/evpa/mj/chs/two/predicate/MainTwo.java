@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import static com.evpa.mj.chs.one.AppleColor.GREEN;
 import static com.evpa.mj.chs.one.AppleColor.PINK;
+import static java.lang.System.out;
 
 public class MainTwo {
 
@@ -71,6 +72,11 @@ public class MainTwo {
         Future<String> stringFuture = executorService.submit(() -> Thread.currentThread().getName());
         System.out.println(threadName.get() + " " + stringFuture.get());
         executorService.shutdown();
+
+        out.println("For each:");
+        inventory.stream()
+                .forEach(apple -> {
+                    System.out.println(apple.getWeight()); });
     }
 
     private static <T> List<T> filterUni(List<T> list, Predicate<T> predicate) {
