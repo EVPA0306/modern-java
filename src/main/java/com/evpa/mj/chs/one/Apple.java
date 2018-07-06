@@ -1,9 +1,16 @@
 package com.evpa.mj.chs.one;
 
-public class Apple {
+public class Apple extends Fruit {
 
-    private AppleColor color;
-    private int weight;
+    public Apple() {}
+
+    public Apple(Integer weight) {
+        this.weight = weight;
+    }
+
+    public Apple(AppleColor color) {
+        this.color = color;
+    }
 
     public AppleColor getColor() {
         return color;
@@ -35,6 +42,7 @@ public class Apple {
     public String toString() {
         return "Apple{" +
                 "color=" + color +
+                ", weight=" + weight +
                 '}';
     }
 }

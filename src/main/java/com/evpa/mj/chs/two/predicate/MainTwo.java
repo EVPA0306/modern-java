@@ -58,6 +58,8 @@ public class MainTwo {
         inventory.sort((a,b) -> Integer.valueOf(b.getWeight()).compareTo(a.getWeight()));
         System.out.println(inventory);
 
+        inventory.sort(Comparator.comparing(Apple::getWeight));
+
         Thread t  = new Thread(() -> System.out.println("Hello"));
         //t.run();
         t.start();
