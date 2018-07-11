@@ -111,6 +111,7 @@ public class TT {
         fib(0,1, Integer.MAX_VALUE);
     }
 
+    //Fibonacci
     private static long fib(long i, long j, int limit) {
         if (i >= limit)
             return i;
