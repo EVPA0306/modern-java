@@ -12,6 +12,7 @@ import static java.util.stream.Collectors.toList;
 public class MainFour {
 
     public static void main(String[] args) {
+
         List<Dish> dishesList = Arrays.asList(new Dish("Pork", false, 800, DishType.MEAT)
                 , new Dish("Mac and Cheese", false, 620, DishType.OTHER)
                 , new Dish("Buffalo Wings", false, 743, DishType.POULTRY)
@@ -105,15 +106,14 @@ public class MainFour {
                 .map(dish -> 1)
                 .reduce(0,(a,b) -> a+b));
 
-        Path path = Paths.get("/usr/share/dict/words");
+        /*Path path = Paths.get("/usr/share/dict/words");
 
         try (Stream<String> lines = Files.lines(path)) {
             lines.flatMap(line -> Arrays.stream(line.split(" ")))
                     .forEach(System.out::println);
         } catch (IOException ioe) {
 
-        }
-
+        }*/
 
     }
 }
