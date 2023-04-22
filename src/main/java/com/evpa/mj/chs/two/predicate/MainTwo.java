@@ -71,8 +71,9 @@ public class MainTwo {
                 return Thread.currentThread().getName();
             }
         });
+
         Future<String> stringFuture = executorService.submit(() -> Thread.currentThread().getName());
-        System.out.println(threadName.get() + " " + stringFuture.get());
+        System.out.println("threadName::" + threadName.get() + " " + stringFuture.get());
         executorService.shutdown();
 
         out.println("For each:");

@@ -115,5 +115,14 @@ public class MainFour {
 
         }*/
 
+        Inner inner = new MainFour.Inner();
+        inner.myMethod();
+
+    }
+
+    private static class Inner {
+        private void myMethod() {
+            System.out.println("Test#Inner");
+        }
     }
 }

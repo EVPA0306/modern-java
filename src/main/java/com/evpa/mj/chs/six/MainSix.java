@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 import static java.util.stream.Collectors.*;
 
 public class MainSix {
+
     public static void main(String[] args) {
 
         List<Dish> emptyMenu = new ArrayList<>();
@@ -59,6 +60,10 @@ public class MainSix {
         List<Dish> dishes = DISH_LIST.stream()
                 .collect(new ToListCollector<>());
         System.out.println(dishes);
+
+        var menuStatistics = DISH_LIST.stream()
+                .collect(summarizingInt(Dish::getCalories));
+        System.out.println(menuStatistics);
     }
 
 

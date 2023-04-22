@@ -28,7 +28,7 @@ public class MainThree {
 
     public static void main(String[] args) {
 
-        Fruit firstApple = giveMeFruit("apple", 555);
+        Fruit firstApple = giveMeFruit("Peach", 555);
         System.out.println(firstApple);
 
         System.out.println(new TriFunctionImpl().add(2,5,9));
@@ -100,7 +100,7 @@ public class MainThree {
         nothingFunction.none();
     }
 
-    private static  <T,R> List<R>map(List<T> list, Function<T,R> function) {
+    private static <T,R> List<R>map(List<T> list, Function<T,R> function) {
         List<R> res = new ArrayList<>();
         for (T t: list) {
             res.add(function.apply(t));

@@ -7,11 +7,20 @@ public class ComposeLetter {
     public static void main(String[] args) {
 
         Function<String,String> addHeader = Letter::addHeader;
-        Function<String,String> transformationPipeline = addHeader
+        System.out.println(addHeader.apply("TEST"));
+        Function<String,String> transformationPipelineWithCorrection = addHeader
                 .andThen(Letter::checkSpelling)
                 .andThen(Letter::addFooter);
-        String finalText = transformationPipeline.apply("Eugene labda");
+        String finalText = transformationPipelineWithCorrection.apply("Eugene labda");
         System.out.println(finalText);
+
+
+        Function<String, String> transformationPipelineWithOutCorrection =
+                addHeader.andThen(Letter::addFooter);
+
+        System.out.println(transformationPipelineWithOutCorrection.apply("Eugene labda"));
+
+
         System.out.println(f(3));
         System.out.println(integrate(f -> f + 5, 3,7));
     }

@@ -1,0 +1,19 @@
+.idea/
+.idea/*
+.iml
+*.class
+jboss.*
+**/.DS_Store
+*.bak
+.java-version
+
+##directories
+web/target/
+build
+gradle
+.gradle
+**/*.iml
+**/target/**/*
+logs/
+
+### misc

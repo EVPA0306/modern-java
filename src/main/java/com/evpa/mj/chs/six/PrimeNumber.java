@@ -20,7 +20,7 @@ public class PrimeNumber {
     private static Map<Boolean, List<Integer>> partitionPrimes(int n) {
         return IntStream.rangeClosed(2,n)
                 .boxed()
-                .collect(partitioningBy(candidate -> isPrime(candidate)));
+                .collect(partitioningBy(PrimeNumber::isPrime));
     }
 
     private static boolean isPrimeSimple(int candidate) {
@@ -29,14 +29,13 @@ public class PrimeNumber {
     }
 
     private static boolean isPrime(int candidate) {
-        int candidateRoot = (int)Math.sqrt((double) candidate);
+        int candidateRoot = (int)Math.sqrt(candidate);
         return IntStream.rangeClosed(2,candidateRoot)
-                .noneMatch(i -> candidate % i == 0)
-                ;
+                .noneMatch(i -> candidate % i == 0);
     }
 
     private static boolean isPrimeExt(List<Integer> primes, int candidate) {
-        int candidateRoot = (int) Math.sqrt((double) candidate);
+        int candidateRoot = (int) Math.sqrt(candidate);
         return takeWhile(primes,i -> i <= candidateRoot)
                 .stream()
                 .noneMatch(p -> candidate % p == 0);

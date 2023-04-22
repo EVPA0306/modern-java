@@ -1,14 +1,15 @@
 package com.evpa.mj.chs.hb;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 import java.util.List;
@@ -19,7 +20,7 @@ public class EventTest {
     private StandardServiceRegistry registry;
     private Session session;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         registry = new StandardServiceRegistryBuilder()
                 .configure()
@@ -41,7 +42,7 @@ public class EventTest {
 
         List<Event> eventList = session.createQuery(" from Event ").list();
 
-        Assert.assertTrue(eventList.size() > 0);
+        assertTrue(eventList.size() > 0);
 
         for (Event e: eventList) {
             System.out.println(e.getDate() + " " + e.getTitle());
@@ -50,7 +51,7 @@ public class EventTest {
 
 
 
-    @After
+    @AfterEach
     public void tearDown() {
         session.getTransaction().commit();
         session.close();

@@ -1,7 +1,9 @@
-package com.evpa.mj.chs.four;
+package com.evpa.mj.chs.five;
 
 
 import com.evpa.mj.chs.Data;
+import com.evpa.mj.chs.four.Trader;
+import com.evpa.mj.chs.four.Transaction;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +11,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
+import static java.lang.System.out;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
@@ -34,13 +38,13 @@ public class TT {
                 .filter(t -> t.getYear() == 2011)
                 .sorted(comparing(Transaction::getAmount))
                 .collect(Collectors.toList());
-        System.out.println(transactions2011);
+        out.println("1." + transactions2011);
 
         List<String> uniqueCities = TRANSACTIONS_LIST.stream()
                 .map(transaction -> transaction.getTrader().getCity())
                 .distinct()
                 .collect(Collectors.toList());
-        System.out.println(uniqueCities);
+        out.println("2." + uniqueCities);
 
         List<Trader> tradersFromCambridge = TRANSACTIONS_LIST.stream()
                 .map(Transaction::getTrader)
@@ -49,26 +53,24 @@ public class TT {
                 .sorted(comparing(Trader::getName))
                 .collect(Collectors.toList());
 
-        System.out.println(tradersFromCambridge);
+        out.println("3." + tradersFromCambridge);
 
         String allTraders = TRANSACTIONS_LIST.stream()
                 .map(t -> t.getTrader().getName())
                 .distinct()
                 .sorted()
-                .collect(joining())
-                //.reduce("", (n1,n2) -> n1+n2)
-                ;
-        System.out.println(allTraders);
+                .collect(joining(" "));
+        out.println("4." + allTraders);
 
         boolean inMilan = TRANSACTIONS_LIST.stream()
                 .anyMatch(transaction -> "Milan".equalsIgnoreCase(transaction.getTrader().getCity()));
-        System.out.println(inMilan);
+        out.println(inMilan);
 
         TRANSACTIONS_LIST.stream()
                 .filter(transaction -> "Cambridge".equalsIgnoreCase(transaction.getTrader().getCity()))
-                .forEach(t -> System.out.println(t.getAmount()));
+                .forEach(t -> out.println(t.getAmount()));
 
-        System.out.println(TRANSACTIONS_LIST.stream()
+        out.println(TRANSACTIONS_LIST.stream()
                 .map(Transaction::getAmount)
                 .reduce(Integer::max)
         );
@@ -76,46 +78,52 @@ public class TT {
         Optional<Transaction> smallest = TRANSACTIONS_LIST.stream()
                 .sorted((t1,t2) -> ((Integer)t1.getAmount()).compareTo(t2.getAmount()))
                 .findFirst();
-        System.out.println(smallest.get());
+        out.println(smallest.get());
 
         Optional<Transaction> smallestTransaction =
                 TRANSACTIONS_LIST.stream()
                         .reduce((t1, t2) ->
                                 t1.getAmount() < t2.getAmount() ? t1 : t2);
-        System.out.println(smallestTransaction.get());
+        out.println(smallestTransaction.get());
 
 
-        System.out.println(Arrays.asList(67,3,78,12,4,3).stream()
+        out.println(Arrays.asList(67,3,78,12,4,3).stream()
                 .reduce((n1,n2) -> n1 < n2 ? n2 : n1).get());
 
-        System.out.println(Arrays.asList(67,3,78,12,4,3).stream()
+        out.println(Arrays.asList(67,3,78,12,4,3).stream()
                 .mapToInt(Integer::intValue)
                 .reduce((n1,n2) -> n1 < n2 ? n2 : n1).getAsInt());
 
-        System.out.println(Arrays.asList(67,3,78,12,4,3).stream()
+        out.println(Arrays.asList(67,3,78,12,4,3).stream()
                 .mapToInt(Integer::intValue)
                 .sum());
 
         IntStream evenNumbers = IntStream.rangeClosed(1,100)
                 .filter(n -> n % 2 == 0);
-        System.out.println(evenNumbers.count());
+        out.println(evenNumbers.count());
 
-        System.out.println("Fib:");
-        //fib(0,1, Integer.MAX_VALUE);
 
         Map<Trader,List<Transaction>> transactionsByTrader = TRANSACTIONS_LIST.stream()
                 .collect(groupingBy(Transaction::getTrader));
-        System.out.println(transactionsByTrader);
-    }
+        out.println(transactionsByTrader);
 
-    //Fibonacci
-    private static long fib(long i, long j, int limit) {
-        if (i >= limit)
-            return i;
-        long next = j;
-        System.out.println(next);
-        return fib(next , j + i, limit);
-    }
 
+      out.println("Fibonacci:");
+      Stream.iterate(new int[]{0,1}, n -> new int[]{n[1], n[0] + n[1]})
+              .limit(20)
+              .map(t -> t[0] + " ")
+              .forEach(out::print);
+
+      out.println();
+
+      String str = "Darshan";
+      out.println(str);
+
+      str.chars()
+              .distinct()
+              .forEach(ch -> out.print((char)ch));
+
+
+    }
 
 }

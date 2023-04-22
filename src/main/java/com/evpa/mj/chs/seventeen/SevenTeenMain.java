@@ -1,6 +1,6 @@
 package com.evpa.mj.chs.seventeen;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 import org.reactivestreams.Publisher;
 
 import java.util.HashMap;
@@ -14,7 +14,6 @@ public class SevenTeenMain {
     public static void main(String[] args) {
 
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
-        //System.out.println(cl);
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("newOnly","NEW");
